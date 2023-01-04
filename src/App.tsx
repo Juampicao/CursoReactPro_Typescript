@@ -1,11 +1,12 @@
-import { Navigation } from './routes/Navigation';
+import { MapsApp } from "./MapsApp"
 
-function App() {
+const App = () => {
   return (
     <>
-      <Navigation />
+      <h1>Hola desde App</h1>
+      <MapsApp />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

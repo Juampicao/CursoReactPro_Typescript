@@ -1,4 +1,5 @@
-import { useReducer } from "react"
+import { useEffect, useReducer } from "react"
+import { getUserLocation } from "../../helpers"
 import { PlacesContext } from "./PlacesContext"
 import { placesReducer } from "./placesReducer"
 
@@ -19,11 +20,18 @@ interface PropsPlacesProvider{
 
 export const PlacesProvider = ({ children }: PropsPlacesProvider) => {
     
+    // Init useReducer with initial state with specific reducer, placesReducer(specific actions)
     const [state, dispatch] = useReducer(placesReducer, INITIAL_STATE)
 
+    useEffect(() => {
+        getUserLocation()
+            .then( lngLAT => dispatch({type : "setuserLocation", payload: lngLAT}))
+    }, [])
+    
 
     return (
         <PlacesContext.Provider value={{
+            // Show whole state..
               ...state,
         }} >
             {children}

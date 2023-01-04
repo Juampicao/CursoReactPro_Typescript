@@ -40,3 +40,9 @@ export interface onChangeArgs{
     product: Product
     count: number;
 }
+
+
+// Interface ProductCard
+export interface ProductInCart extends Product{
+    count: number
+}

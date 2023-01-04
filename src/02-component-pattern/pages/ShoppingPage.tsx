@@ -1,60 +1,14 @@
-import { useEffect, useState } from "react";
 import { ProductButtons, ProductCardFinal, ProductTitle } from "../components";
-import { Product } from "../interfaces/interfaces";
+import { products } from "../data/products";
+import { useShoppingCart } from "../hooks/useShoppingCart";
 import "../styles/custom-styles.css";
 import "../styles/styles.module.css";
 
-const product1 : Product = {
-    id: "1",
-    title: "Zanahorias",
-    img: "./coffee-mug.png"
-}
-
-const product2 : Product = {
-    id: "2",
-    title: "Manzanas",
-    img: "./coffee-mug.png"
-}
-
-const products: Product[] = [product1, product2]
-
-// Interface ProductCard
-interface ProductInCart extends Product{
-    count: number
-}
 
 export const ShoppingPage = () => {
     
 
-    const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({})
-    
-    
-    const onProductCountChange = ({count, product} : {count: number, product:Product}) => {
-
-        console.log("[onProductCountChangeFn] Count:", count, product)
-
-        setShoppingCart(oldShoppingCart => {
-        
-            if (count === 0) {
-                
-                const { [product.id] : toDelete , ...rest} = oldShoppingCart
-
-                console.log({toDelete})
-                return { ...rest }
-            }   
-            
-            return {
-                ...oldShoppingCart,
-                [ product.id ] : {...product,count}
-            }
-        })
-
-        console.log(shoppingCart)
-    }
-
-    useEffect(() => {
-      console.log("cambio a ", shoppingCart.count)
-    }, [shoppingCart.count])
+   const { shoppingCart, onProductCountChange}  = useShoppingCart()
     
 
   return (
@@ -67,6 +21,7 @@ export const ShoppingPage = () => {
     
                 <ProductCardFinal
                     className="bg-dark text-white"
+                    key={product.id}
                     product={product}
                     onChange={onProductCountChange}
                     value={ shoppingCart[product.id]?.count || 0 }
@@ -86,8 +41,8 @@ export const ShoppingPage = () => {
                             product={product}
                             key={key}
                             className="bg-dark text-white"
+                            onChange={onProductCountChange} //? Si no quiero que el hijo controle, saco esta funcion.
                             value={product.count}
-                            onChange={onProductCountChange}
                         >
                             <ProductTitle
                                 className="text-white bg-dark"
@@ -106,11 +61,11 @@ export const ShoppingPage = () => {
             </div>
            
               
-            <div>
+            {/* <div>
                   <code>
                     {JSON.stringify(shoppingCart)}
                   </code>   
-            </div>
+            </div> */}
           </div>
       </div>
   )

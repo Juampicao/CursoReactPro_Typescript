@@ -41,7 +41,9 @@ export const ShoppingPage = () => {
                             product={product}
                             key={key}
                             className="bg-dark text-white"
-                            onChange={onProductCountChange} //? Si no quiero que el hijo controle, saco esta funcion.
+                            
+                            //Delete or comment onChange & value for not give control to the child. 
+                            onChange={onProductCountChange} 
                             value={product.count}
                         >
                             <ProductTitle

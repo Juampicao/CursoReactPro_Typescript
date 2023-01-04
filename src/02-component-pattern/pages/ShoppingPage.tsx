@@ -9,11 +9,7 @@ const product : Product = {
 }
 
 export const ShoppingPage = () => {
-
-
-
-
-    
+   
   return (
       <div>
           <h1> Shopping Page</h1>

@@ -5,20 +5,26 @@ import styles from "../styles/styles.module.css";
 
 export interface IProductTitleProps{
     title?: string,
+    subtitle?: string,
     className?: string
     style?: React.CSSProperties
 
 }
 // Product Title
-export const ProductTitle = ({ title, className, style } : IProductTitleProps) => {
+export const ProductTitle = ({ title, subtitle, className, style } : IProductTitleProps) => {
     
     const { product } = useContext(ProductContext)
 
     return (
-        <span className={`${styles.productDescription} ${className} `}
-              style={style}        
-        >
-            {title? title : product.title}
-        </span>
+        <div>
+            <h3 className={`${styles.productDescription} ${className} `}
+                    style={style}        
+                    >
+                {title ? title : product.title}
+                
+            </h3>
+            <p> {subtitle? subtitle : ""} </p>
+        </div>
+
     )
 }

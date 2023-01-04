@@ -1,5 +1,7 @@
 
-
+.bg-red {
+    background-color: red;
+}
 .productCard {
     background-color: white;
     border-radius: 15px;

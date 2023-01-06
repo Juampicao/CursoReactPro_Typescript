@@ -13,7 +13,7 @@ export enum IMethods{
 
 
 // Class for create axios request using useAxios.tsx
-export class FetchAxios {
+export class ObjectFetchAxios {
   url: string; 
   method: IMethods
   data!: any
@@ -32,4 +32,14 @@ export class FetchAxios {
     this.data = data
     this.functionName = functionName
   }
+} 
+
+export interface IPersona{
+  name: string,
+  age: number,
+}
+
+export interface IClub{
+  name: string ,
+  country: string
 }

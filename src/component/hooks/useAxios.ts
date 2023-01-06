@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useReducer } from 'react';
 import { axiosReducer } from '../axiosReducer';
+import { CustomError } from "../helpers/CustomError";
 import { CustomLogger } from "../helpers/CustomLogger";
-import { FetchAxios, IAxiosState } from '../interfaces/interfaces';
+import { IAxiosState, ObjectFetchAxios } from '../interfaces/interfaces';
 
 const customLogger = new CustomLogger()
+const customError = new CustomError();
 
 //Initial State for reducer.
 const INITIAL_STATE: IAxiosState = {
@@ -23,7 +25,8 @@ const useAxios = () => {
    * @param fetchAxiosObject FetchAxios(url, method, data, functionName)
    * @returns data from axios.
    */
-  const handleSubmit = async (fetchAxiosObject: FetchAxios) => {
+  const handleSubmit = async (fetchAxiosObject: ObjectFetchAxios ) => {
+    
     
     const { method, url, data, functionName } = fetchAxiosObject; 
     
@@ -43,7 +46,8 @@ const useAxios = () => {
         if (!componenteDesmontado) {
           dispatch({ type: 'RESPUESTA_CONSULTA_ERROR', payload: error.response });
         }
-        customLogger.logError(functionName, error)
+        // customLogger.logError(functionName, error)
+        customError.badRequest(functionName, error)
       }
       
     };
@@ -56,7 +60,8 @@ const useAxios = () => {
  
   }
   
-  return {state, handleSubmit};
+  return { state, handleSubmit };
+  
 };
  
 export default useAxios;

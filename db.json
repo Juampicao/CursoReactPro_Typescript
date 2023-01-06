@@ -9,52 +9,28 @@
       "id": 2,
       "nombre": "Gonzalo",
       "edad": 18
+    },
+    {
+      "name": "Santiago",
+      "age": 26,
+      "id": 3
     }
   ],
   "clubs": [
     {
       "id": 200,
-      "nombre": "River"
+      "nombre": "Barcelona",
+      "country": "España"
     },
     {
       "id": 201,
-      "nombre": "Boca"
+      "nombre": "Juventus",
+      "country": "Italia"
     },
     {
-      "nombre": "Independiente",
+      "name": "independiente",
+      "country": "Argentina",
       "id": 202
-    },
-    {
-      "nombre": "Independiente",
-      "id": 203
-    },
-    {
-      "nombre": "Independiente",
-      "id": 204
-    },
-    {
-      "nombre": "Independiente",
-      "id": 205
-    },
-    {
-      "nombre": "Independiente",
-      "id": 206
-    },
-    {
-      "nombre": "Independiente",
-      "id": 207
-    },
-    {
-      "nombre": "Independiente",
-      "id": 208
-    },
-    {
-      "nombre": "Independiente",
-      "id": 209
-    },
-    {
-      "nombre": "Independiente",
-      "id": 210
     }
   ]
 }

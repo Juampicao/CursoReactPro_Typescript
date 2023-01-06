@@ -11,6 +11,6 @@ export class CustomLogger{
 
     logError(functionName: string , error: any) {
         console.error(`[${functionName}]`, error)
-        throw new Error(error)
+        // throw new Error(error)
     }
 }

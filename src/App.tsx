@@ -1,9 +1,9 @@
-import AxiosDefaultComponent from "./component/Prueba"
+import AxiosVisualComponent from "./component/AxiosVisualComponent"
 const App = () => {
   return (
     <>
       <h1>Prueba de Componente Reutilziable de Axios</h1>
-      <AxiosDefaultComponent/>
+      <AxiosVisualComponent/>
     </>
   )
 }

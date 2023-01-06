@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
 import useAxios from './hooks/useAxios';
 import { FetchAxios, IMethods } from './interfaces/interfaces';
  
 
-const AxiosDefaultComponent = () => {
+const AxiosVisualComponent = () => {
   
   let urlBase = 'http://localhost:4000/people'
   let method = IMethods.GET
   let data: any = { name: "juan", age: 20 }
-  
+  let functionName: string = "";
   // Objeto FetchAxios para enviar al useAxios.
-  let fetchAxiosObject = new FetchAxios(urlBase, method, data )
+  let fetchAxiosObject = new FetchAxios(urlBase, method, data, functionName )
   
   const { handleSubmit, state } = useAxios();
   
@@ -18,37 +17,37 @@ const AxiosDefaultComponent = () => {
 
   // Pruebas 4 funciones.
   const handleClickGetPersonas = () => {
-    console.log("tocando handleClickGet")
-    fetchAxiosObject = new FetchAxios(urlBase, method, data)
+    let funcitonName = "handleClickGetPersonas"
+    fetchAxiosObject = new FetchAxios(urlBase, method, data, funcitonName)
     handleSubmit(fetchAxiosObject)
   } 
 
   const handleClickGetClubes = () => {
+    let funcitonName = "handleClickGetClubes"
     urlBase = `http://localhost:4000/clubs`
-    console.log("tocando handleClickGetClubes")
-    fetchAxiosObject = new FetchAxios(urlBase, method, data)
+    fetchAxiosObject = new FetchAxios(urlBase, method, data, funcitonName)
     handleSubmit(fetchAxiosObject)
   }
 
   const handleClickPostClubes = () => {
-    urlBase = `http://localhost:4000/clubs`
-    data = {"nombre": "Independiente"}
-    console.log("tocando handleClickPostClubes")
-    fetchAxiosObject = new FetchAxios(urlBase, IMethods.POST, data)
+    fetchAxiosObject = new FetchAxios(
+      `http://localhost:4000/clubs`,
+      IMethods.POST,
+      {"nombre": "Independiente"},
+      "handleClickPostClubes"
+    )
     handleSubmit(fetchAxiosObject)
   }
 
   const handleClickPostError = () => {
+    let funcitonName = "handleClickPostError"
     urlBase = `http://localhost:4000/clubss`
     data = {"nombre": "Independiente"}
-    console.log("tocando handleClickPostClubes")
-    fetchAxiosObject = new FetchAxios(urlBase, IMethods.POST, data)
+    fetchAxiosObject = new FetchAxios(urlBase,  IMethods.POST, data, funcitonName)
     handleSubmit(fetchAxiosObject)
   }
   
-  useEffect(() => {
-      console.log("cambiando.")
-  }, [loading, respuestaAPI, errorAPI])
+
   
   return (
     <>
@@ -96,7 +95,7 @@ const AxiosDefaultComponent = () => {
   );
 };
  
-export default AxiosDefaultComponent
+export default AxiosVisualComponent
 
 
 

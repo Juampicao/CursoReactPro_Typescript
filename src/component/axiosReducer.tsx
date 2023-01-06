@@ -6,7 +6,7 @@ export const axiosReducer = (state: any, action: any) => {
                ...state,
                loading: true,
                errorAPI: null,
-               respuestaAPI: { respuesta: 'KO' }
+               respuestaAPI: "Error"
            };
     case 'RESPUESTA_CONSULTA_OK':
            return {
@@ -15,12 +15,12 @@ export const axiosReducer = (state: any, action: any) => {
                errorAPI: null,
                 respuestaAPI: action.payload
            };
-    case 'RESPUESTA_CONSULTA_KO':
+    case 'RESPUESTA_CONSULTA_ERROR':
            return {
                ...state,
                loading: false,
                errorAPI: action.payload,
-               respuestaAPI: { respuesta: 'KO' }
+               respuestaAPI: "Error"
            };
     default:
       return state;

@@ -7,7 +7,7 @@ const App = () => {
         <h1>Prueba de Componente Reutilziable de Axios</h1>
         <h3> Typescript - React - Use Axios - Axios Reducer</h3>
         <h4> Custom Logger - Custom Error</h4> 
-        <a href="https://github.com/Juampicao/CursoReactPro_Typescript/tree/use-axios" > Codigo Github: </a>
+        <a href="https://github.com/Juampicao/CursoReactPro_Typescript/tree/use-axios" target="_blank" > Codigo Github: </a>
       </div>
 
       <AxiosVisualComponent1 />

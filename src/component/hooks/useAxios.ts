@@ -1,44 +1,39 @@
-import axios from 'axios';
-import { useEffect, useReducer } from 'react';
- 
-const reducer = (state : any, action : any) => {
-   switch (action.type) {
-    case 'INICIO_CONSULTA_API':
-        return { ...state, loading: true, errorAPI: null, respuestaAPI: { respuesta: 'KO' } };
-    case 'RESPUESTA_CONSULTA_OK':
-      return { ...state, loading: false, errorAPI: null, respuestaAPI: action.payload };
-    case 'RESPUESTA_CONSULTA_KO':
-      return { ...state, loading: false, errorAPI: action.payload, respuestaAPI: { respuesta: 'KO' } };
-    default:
-      return state;
-  }
-};
- 
-const useAxios = (accesoAPI: any, datos : any) => {
-  const [state, dispatch] = useReducer(reducer, {
+import axios from "axios";
+import { useReducer } from 'react';
+import { axiosReducer } from '../axiosReducer';
+import { FetchAxios, IAxiosState } from '../interfaces/interfaces';
+
+const INITIAL_STATE: IAxiosState = {
     loading: false,
     errorAPI: null,
-    respuestaAPI: { respuesta: 'KO' },
-  });
+    respuestaAPI: "Aun no hay data",
+}
+
+
+const useAxios = () => {
+
+  const [state, dispatch] = useReducer(axiosReducer, INITIAL_STATE);
  
-  useEffect(() => {
+  const handleSubmit = async (fetchAxiosObject: FetchAxios) => {
+    
+    const { method, url, data } = fetchAxiosObject; 
+    
     let componenteDesmontado = false;
  
     const consultaAPI = async () => {
       dispatch({ type: 'INICIO_CONSULTA_API' });
  
       try {
-        // 'data' son los datos que se envían como request body
-        // Solo es válido para 'PUT', 'POST', 'DELETE y 'PATCH'
-        const consulta = await axios({ method: accesoAPI.tipo, url: accesoAPI.url, data: datos });
- 
+
+        const response = await axios({ method: method, url: url, data: data });
         if (!componenteDesmontado) {
-          dispatch({ type: 'RESPUESTA_CONSULTA_OK', payload: consulta });
+          dispatch({ type: 'RESPUESTA_CONSULTA_OK', payload: response });
         }
       } catch (error : any) {
         if (!componenteDesmontado) {
           dispatch({ type: 'RESPUESTA_CONSULTA_KO', payload: error.response });
         }
+        console.log(error)
       }
     };
  
@@ -47,9 +42,11 @@ const useAxios = (accesoAPI: any, datos : any) => {
     return () => {
       componenteDesmontado = true;
     };
-  }, [accesoAPI.tipo, accesoAPI.url, datos]);
  
-  return state;
+  }
+  
+  return {state, handleSubmit};
 };
  
 export default useAxios;
+

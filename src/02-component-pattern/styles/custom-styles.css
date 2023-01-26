@@ -1,11 +1,30 @@
+/* Background */
 .bg-dark{
     background-color: rgb(56,56,56);
 }
 
+.bg-blue{
+    background-color: rgb(16, 8, 60);
+}
+
+.bg-slate{
+    background-color: rgb(95, 91, 116);
+}
+
+/* Text Color */
 .text-white{
-    
     color: white
 }
+
+.text-blue{
+    color:rgb(15, 0, 181)
+}
+
+/* Align Text */
+.text-center {
+    text-align: center;
+}
+
 
 .custom-image{
     padding: 10px;
@@ -28,4 +47,8 @@
 
 .shopping-cart p , .shopping-cart h2{
     text-align: center;
+}
+
+.container{
+    padding: 1rem;
 }

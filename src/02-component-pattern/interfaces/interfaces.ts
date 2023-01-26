@@ -1,7 +1,9 @@
 import { ReactElement } from "react";
 import { IProductButtonsProps } from "../components/ProductButtons";
 import { IProductImageProps } from "../components/ProductImage";
+import { IProductPriceProps } from "../components/ProductPrice";
 import { IProductTitleProps } from "../components/ProductTitle";
+import { IProductTotalAmountProps } from "../components/ProductTotalAmount";
 
 // Props  ProductCard
 export interface ProductCardProps{
@@ -18,6 +20,7 @@ export interface Product {
     id: string,
     title: string;
     img?: string;
+    price: number;
 }
 
 // Create Context
@@ -33,6 +36,9 @@ export interface ProductCardHOCProps {
     Title: (Props: IProductTitleProps ) => JSX.Element,
     Image: ( Props: IProductImageProps )=> JSX.Element,
     Buttons: (Props: IProductButtonsProps) => JSX.Element
+    Price: (Props: IProductPriceProps) => JSX.Element
+    TotalAmount: (Props: IProductTotalAmountProps) => JSX.Element
+
 }
 
 // OnChange Args to ProductCardFinal
